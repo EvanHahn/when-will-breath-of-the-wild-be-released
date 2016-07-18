@@ -1,5 +1,6 @@
-var $ = require('./lib/bootstrap-jquery')
+// var $ = require('./lib/bootstrap-jquery')
 var Vue = require('vue')
+var releaseData = require('./data')
 var humanizeDuration = require('humanize-duration')
 
 function humanizeTimeDifference (now, other) {
@@ -19,7 +20,8 @@ var app = new Vue({
   el: '#app',
   data: {
     now: new Date(),
-    releaseYear: 2017
+    releaseYear: 2017,
+    releases: releaseData
   },
   computed: {
     releaseYearToEarliest: function () {
@@ -30,6 +32,27 @@ var app = new Vue({
     },
     releaseYearToMiddle: function () {
       return humanizeTimeDifference(this.now, new Date(this.releaseYear, 6, 2))
+    },
+    games: function () {
+      var namesSeen = {}
+
+      return this.releases.reduce(function (result, release) {
+        if (namesSeen[release.name]) {
+          return result
+        } else {
+          namesSeen[release.name] = true
+
+          return result.concat({
+            name: release.name,
+            isMainSeries: release.isMainSeries
+          })
+        }
+      }, [])
+    },
+    mainSeriesGames: function () {
+      return this.games.filter(function (game) {
+        return game.isMainSeries
+      })
     }
   }
 })

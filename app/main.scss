@@ -34,3 +34,15 @@ body {
     margin-bottom: 1rem;
   }
 }
+
+.game-list {
+  font-size: 80%;
+  li {
+    color: $gray-light;
+  }
+
+  .game-list-is-main-series {
+    color: inherit;
+    font-weight: bold;
+  }
+}

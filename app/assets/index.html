@@ -36,11 +36,27 @@
       <span class="release-year-box-year display-1">{{ releaseYear }}</span>
     </div>
 
-    <p><strong>January 1, {{ releaseYear }}</strong> is {{ releaseYearToEarliest }}</p>
+    <ul>
+      <li><p><strong>December 31, {{ releaseYear }}</strong> is {{ releaseYearToLatest }}. That's the <strong>longest</strong> we'll have to wait.</p></li>
+      <li><p><strong>January 1, {{ releaseYear }}</strong> is {{ releaseYearToEarliest }}. That's the <strong>shortest</strong> we have to wait.</p></li>
+      <li><p><strong>July 2, {{ releaseYear }}</strong> is {{ releaseYearToMiddle }}. That's the <strong>middle</strong> of the year.</p></li>
+    </ul>
 
-    <p><strong>December 31, {{ releaseYear }}</strong> is {{ releaseYearToLatest }}</p>
+    <p>So that's one way to look at it: looking at different parts of {{ releaseYear }}.</p>
 
-    <p><strong>July 2, {{ releaseYear }}</strong> (the exact middle of the year) is {{ releaseYearToMiddle}}</p>
+    <p>What if we looked at something else?</p>
+
+    <hr>
+
+    <p>There have been <strong>{{ games.length }} Zelda games</strong> across {{ releases.length }} releases, of which <strong>{{ mainSeriesGames.length }} are in the main series</strong>.</p>
+
+    <ul class="game-list">
+      <template v-for="game in games">
+        <li v-bind:class="{ 'game-list-is-main-series': game.isMainSeries }">
+          {{ game.name }}
+        </li>
+      </template>
+    </ul>
   </div>
 </article>
 
