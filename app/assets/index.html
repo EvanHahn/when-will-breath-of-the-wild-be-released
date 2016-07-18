@@ -12,9 +12,37 @@
 
 <header class="wild-header">
   <div class="container">
-    <h1>When will <em>Breath of the Wild</em> be released?</h1>
+    <h1>When will Breath of the Wild be released?</h1>
+    <h2>Published July 17, 2016 by <a href="https://evanhahn.com">Evan Hahn</a></h2>
   </div>
 </header>
+
+<article class="container">
+  <p>The Legend of Zelda: Breath of the Wild is the next Zelda title to be released. Many fans are very excited. We'd count the days if we could, but we don't know exactly when it comes out.</p>
+
+  <p>Can we <em>guess</em> when Breath of the Wild will come out?</p>
+
+  <noscript class="alert alert-danger">
+    This page requires JavaScript. Please enabled it to continue.
+  </noscript>
+
+  <div id="app" v-cloak>
+    <hr>
+
+    <p><a target="_blank" href="https://twitter.com/NintendoAmerica/">Nintendo has tweeted</a> and repeatedly mentioned a {{ releaseYear }} release date. What does that mean?</p>
+
+    <div class="release-year-box">
+      <span class="release-year-box-header">Release year:</span>
+      <span class="release-year-box-year display-1">{{ releaseYear }}</span>
+    </div>
+
+    <p><strong>January 1, {{ releaseYear }}</strong> is {{ releaseYearToEarliest }}</p>
+
+    <p><strong>December 31, {{ releaseYear }}</strong> is {{ releaseYearToLatest }}</p>
+
+    <p><strong>July 2, {{ releaseYear }}</strong> (the exact middle of the year) is {{ releaseYearToMiddle}}</p>
+  </div>
+</article>
 
 <script src="app.js"></script>
 <script>require('initialize')</script>

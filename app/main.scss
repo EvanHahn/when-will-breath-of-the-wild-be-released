@@ -1,8 +1,36 @@
 @import "bootstrap";
 
+body {
+  font-size: 16pt;
+}
+
+[v-cloak] {
+  display: none;
+}
+
 .wild-header {
+  margin-bottom: 1em;
   padding: 2em 0;
   text-align: center;
   color: #a4a2ba;
   background-color: #2b2557;
+
+  a {
+    color: inherit;
+  }
+}
+
+.release-year-box {
+  text-align: center;
+
+  &-header {
+    display: block;
+    font-size: 80%;
+  }
+  &-year {
+    display: block;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
 }
