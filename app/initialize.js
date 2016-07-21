@@ -3,6 +3,10 @@ var visible = require('visible-element')($)
 var Vue = require('vue')
 var releaseData = require('./data')
 var humanizeDuration = require('humanize-duration')
+var setYear = require('date-fns/set_year')
+var formatDate = require('date-fns/format')
+var mean = require('lodash/mean')
+var median = require('median')
 
 function humanizeTimeDifference (now, other) {
   var diff = other - now
@@ -22,6 +26,7 @@ var app = new Vue({
   data: {
     now: new Date(),
     releaseYear: 2017,
+    releaseDayListMainSeriesOnly: true,
     releases: releaseData
   },
   computed: {
@@ -45,7 +50,8 @@ var app = new Vue({
 
           return result.concat({
             name: release.name,
-            isMainSeries: release.isMainSeries
+            isMainSeries: release.isMainSeries,
+            releaseDate: release.releaseDate
           })
         }
       }, [])
@@ -54,6 +60,36 @@ var app = new Vue({
       return this.games.filter(function (game) {
         return game.isMainSeries
       })
+    },
+    releaseDayList: function () {
+      var gameList = this.releaseDayListMainSeriesOnly ? this.mainSeriesGames : this.games
+
+      return gameList.map(function (game) {
+        return {
+          name: game.name,
+          isMainSeries: game.isMainSeries,
+          releaseDateNormalized: setYear(game.releaseDate, 2000),
+          releaseDay: formatDate(game.releaseDate, 'MMM DD'),
+          releaseYear: game.releaseDate.getFullYear()
+        }
+      }).sort(function (a, b) {
+        return a.releaseDateNormalized - b.releaseDateNormalized
+      })
+    },
+    releaseDayAverages: function () {
+      var releaseDatesAsMs = this.releaseDayList.map(function (game) {
+        return game.releaseDateNormalized.valueOf()
+      })
+
+      function formattedFromString (ms) {
+        var date = setYear(new Date(ms), 2017)
+        return formatDate(date, 'MMMM DD')
+      }
+
+      return {
+        mean: formattedFromString(mean(releaseDatesAsMs)),
+        median: formattedFromString(median(releaseDatesAsMs))
+      }
     }
   }
 })

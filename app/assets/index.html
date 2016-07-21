@@ -48,15 +48,46 @@
 
     <hr>
 
-    <p>There have been <strong>{{ games.length }} Zelda games</strong> across {{ releases.length }} releases, of which <strong>{{ mainSeriesGames.length }} are in the main series</strong>.</p>
+    <p>There have been <strong>{{ games.length }} Zelda games</strong> of which <strong>{{ mainSeriesGames.length }} are in the main series</strong>. Can we look at release dates to find a pattern?</p>
 
-    <ul class="game-list">
-      <template v-for="game in games">
-        <li v-bind:class="{ 'game-list-is-main-series': game.isMainSeries }">
-          {{ game.name }}
-        </li>
-      </template>
-    </ul>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" v-model="releaseDayListMainSeriesOnly">
+        Only show main series releases
+      </label>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <table class="game-list table">
+          <thead>
+            <tr>
+              <th>Release day</th>
+              <th>Game</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="game in releaseDayList">
+              <tr v-bind:class="{ 'game-list-is-main-series': game.isMainSeries }">
+                <td class="game-list-release-day">{{ game.releaseDay }}</td>
+                <td>{{ game.name }}</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <p>Of these {{ releaseDayList.length }} games:</p>
+
+        <ul>
+          <li>The <strong>median</strong> release date is {{ releaseDayAverages.median }}</li>
+          <li>The <strong>mean</strong> release date is {{ releaseDayAverages.mean }}</li>
+        </ul>
+      </div>
+
+    </div>
+
   </div>
 </article>
 
