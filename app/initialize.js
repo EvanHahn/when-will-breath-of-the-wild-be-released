@@ -1,4 +1,5 @@
-// var $ = require('./lib/bootstrap-jquery')
+var $ = require('./lib/bootstrap-jquery')
+var visible = require('visible-element')($)
 var Vue = require('vue')
 var releaseData = require('./data')
 var humanizeDuration = require('humanize-duration')
@@ -58,5 +59,7 @@ var app = new Vue({
 })
 
 setInterval(function () {
-  app.now = new Date()
-}, 1000)
+  if (visible.inViewport($('.release-year-list'))) {
+    app.now = new Date()
+  }
+}, 500)
