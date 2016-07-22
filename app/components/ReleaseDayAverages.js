@@ -14,29 +14,6 @@ module.exports = React.createClass({
 
   render () {
     const games = this.state.mainSeriesOnly ? data.mainSeriesGames : data.games
-    /*
-    const releaseDayList = games.map((game) => {
-      return {
-        name: game.name,
-        isMainSeries: game.isMainSeries,
-        releaseDateNormalized: setYear(game.releaseDate, 2000),
-        releaseDay: formatDate(game.releaseDate, 'MMM DD'),
-        releaseYear: game.releaseDate.getFullYear(),
-        id: game.id
-      }
-    }).sort((a, b) => {
-      return a.releaseDateNormalized - b.releaseDateNormalized
-    })
-    const gameListTrs = releaseDayList.map((release) => {
-      const className = release.isMainSeries ? 'game-list-is-main-series' : ''
-      return (
-        <tr key={release.id} className={className}>
-          <td className="game-list-release-day">{release.releaseDay}</td>
-          <td>{release.name}</td>
-        </tr>
-      )
-    })
-    */
 
     return (
       <div>
