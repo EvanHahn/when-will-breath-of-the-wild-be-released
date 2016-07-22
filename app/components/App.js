@@ -4,6 +4,7 @@ const data = require('data')
 const ReleaseYearBox = require('components/ReleaseYearBox')
 const ReleaseYearList = require('components/ReleaseYearList')
 const ReleaseDayAverages = require('components/ReleaseDayAverages')
+const YouTubeEmbed = require('components/YouTubeEmbed')
 
 module.exports = React.createClass({
   render () {
@@ -15,19 +16,29 @@ module.exports = React.createClass({
 
         <ReleaseYearList />
 
-        <p>So that's one way to look at it: looking at different parts of {config.releaseYear}.</p>
-
         <p>What if we looked at something else?</p>
 
         <hr />
 
-        <p>There have been <strong>{data.games.length} Zelda games</strong> of which <strong>{data.mainSeriesGames.length} are in the main series</strong>. Can we look at release dates to find a pattern?</p>
+        <p>There have been <strong>{data.games.length} Zelda games</strong>, <strong>{data.mainSeriesGames.length} of which are in the main series</strong>. Can we look at release dates to find a pattern?</p>
 
         <ReleaseDayAverages />
 
         <hr />
 
-        <p>So, when will it be released?</p>
+        <p>So, when will Breath of the Wild be released?</p>
+
+        <p>Your guess is as good as mine! <strong>My guess: November of {config.releaseYear}</strong>, in time for the holidays. But we'll see!</p>
+
+        <p>Until then, I'll be rewatching the trailer over and over.</p>
+
+        <YouTubeEmbed src='https://www.youtube.com/embed/1rPxiXXxftE' />
+
+        <footer className='small'>
+          <hr />
+
+          <p>Release data comes from <a href='http://www.giantbomb.com/'>GiantBomb</a>. See the code <a href='#TODO'>on GitHub</a>. Enjoy!</p>
+        </footer>
       </div>
     )
   }
