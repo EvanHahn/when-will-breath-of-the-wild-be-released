@@ -7,6 +7,7 @@ const formatDate = require('date-fns/format')
 const isVisible = require('lib/is-visible')
 const config = require('config')
 const humanizeTimeDifference = require('lib/humanize-time-difference')
+const last = require('lodash/last')
 
 module.exports = React.createClass({
   getInitialState () {
@@ -32,10 +33,15 @@ module.exports = React.createClass({
     const medianMs = median(datesAsMs)
     const meanMs = mean(datesAsMs)
 
+    const gamesTrulySorted = [].concat(this.props.games).sort((a, b) => a.releaseDate - b.releaseDate)
+    const lastReleaseName = last(gamesTrulySorted).name
+    const lastReleaseAgo = humanizeTimeDifference(this.state.now, last(gamesTrulySorted).releaseDate)
+
     return (
       <div ref='main'>
         <Average type='median' now={this.state.now} thenMs={medianMs} />
         <Average type='mean' now={this.state.now} thenMs={meanMs} />
+        <p>The last release, <strong>{lastReleaseName}</strong>, was {lastReleaseAgo}.</p>
       </div>
     )
   }

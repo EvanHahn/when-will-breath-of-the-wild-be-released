@@ -24,6 +24,10 @@ module.exports = React.createClass({
         <p>There have been <strong>{data.games.length} Zelda games</strong> of which <strong>{data.mainSeriesGames.length} are in the main series</strong>. Can we look at release dates to find a pattern?</p>
 
         <ReleaseDayAverages />
+
+        <hr />
+
+        <p>So, when will it be released?</p>
       </div>
     )
   }
