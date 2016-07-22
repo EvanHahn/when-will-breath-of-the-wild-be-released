@@ -37,7 +37,7 @@ module.exports = React.createClass({
         <footer className='small'>
           <hr />
 
-          <p>Release data comes from <a href='http://www.giantbomb.com/'>GiantBomb</a>. See the code <a href='#TODO'>on GitHub</a>. Enjoy!</p>
+          <p>Release data comes from <a href='http://www.giantbomb.com/'>GiantBomb</a>. See the code <a href='https://github.com/EvanHahn/when-will-breath-of-the-wild-be-released'>on GitHub</a>. Enjoy!</p>
         </footer>
       </div>
     )
