@@ -14,9 +14,25 @@ module.exports = React.createClass({
 
         <ReleaseYearBox />
 
-        <ReleaseYearList />
+        <ReleaseYearList
+          earliest={new Date(config.releaseYear, 0, 1)}
+          middle={new Date(config.releaseYear, 6, 2)}
+          latest={new Date(config.releaseYear, 11, 31)}
+         />
 
         <p>What if we looked at something else?</p>
+
+        <hr />
+
+        <p>Nintendo's new NX console is <a href='http://www.mobilenapps.com/articles/15815/20160721/nintendo-nx-release-date-quality-of-life.htm' target='_blank'>slated for a March {config.releaseYear} release</a>. What if it's an NX launch title?</p>
+
+        <ReleaseYearList
+          earliest={new Date(config.releaseYear, config.nxReleaseMonth, 1)}
+          middle={new Date(config.releaseYear, config.nxReleaseMonth, 16)}
+          latest={new Date(config.releaseYear, config.nxReleaseMonth, 31)}
+         />
+
+        <p>What if we looked at more data?</p>
 
         <hr />
 

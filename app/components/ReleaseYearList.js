@@ -2,6 +2,7 @@ const React = require('react')
 const config = require('config')
 const isVisible = require('lib/is-visible')
 const humanizeTimeDifference = require('lib/humanize-time-difference')
+const formatDate = require('date-fns/format')
 
 module.exports = React.createClass({
   getInitialState () {
@@ -24,15 +25,19 @@ module.exports = React.createClass({
 
   render () {
     const now = this.state.now
-    const releaseYearToEarliest = humanizeTimeDifference(now, new Date(config.releaseYear, 0, 1))
-    const releaseYearToLatest = humanizeTimeDifference(now, new Date(config.releaseYear, 11, 31))
-    const releaseYearToMiddle = humanizeTimeDifference(now, new Date(config.releaseYear, 6, 2))
+
+    const earliest = formatDate(this.props.earliest, 'MMMM D, YYYY')
+    const latest = formatDate(this.props.latest, 'MMMM D, YYYY')
+    const middle = formatDate(this.props.middle, 'MMMM D, YYYY')
+    const releaseYearToEarliest = humanizeTimeDifference(now, this.props.earliest)
+    const releaseYearToLatest = humanizeTimeDifference(now, this.props.latest)
+    const releaseYearToMiddle = humanizeTimeDifference(now, this.props.middle)
 
     return (
       <ul ref='list' className='release-year-list'>
-        <li><p><strong>December 31, {config.releaseYear}</strong> is {releaseYearToLatest}. That's the <strong>longest</strong> we'll have to wait.</p></li>
-        <li><p><strong>January 1, {config.releaseYear}</strong> is {releaseYearToEarliest}. That's the <strong>shortest</strong> we have to wait.</p></li>
-        <li><p><strong>July 2, {config.releaseYear}</strong> is {releaseYearToMiddle}. That's the <strong>middle</strong> of the year.</p></li>
+        <li><p><strong>{latest}</strong> is {releaseYearToLatest}. That's the <strong>longest</strong> we'll have to wait.</p></li>
+        <li><p><strong>{earliest}</strong> is {releaseYearToEarliest}. That's the <strong>shortest</strong> we have to wait.</p></li>
+        <li><p><strong>{middle}</strong> is {releaseYearToMiddle}. That's the <strong>average</strong> of those two times.</p></li>
       </ul>
     )
   }
