@@ -22,73 +22,13 @@
 
   <p>Can we <em>guess</em> when Breath of the Wild will come out?</p>
 
+  <hr>
+
   <noscript class="alert alert-danger">
     This page requires JavaScript. Please enabled it to continue.
   </noscript>
 
-  <div id="app" v-cloak>
-    <hr>
-
-    <p><a target="_blank" href="https://twitter.com/NintendoAmerica/">Nintendo has tweeted</a> and repeatedly mentioned a {{ releaseYear }} release date. What does that mean?</p>
-
-    <div class="release-year-box">
-      <span class="release-year-box-header">Release year:</span>
-      <span class="release-year-box-year display-1">{{ releaseYear }}</span>
-    </div>
-
-    <ul class="release-year-list">
-      <li><p><strong>December 31, {{ releaseYear }}</strong> is {{ releaseYearToLatest }}. That's the <strong>longest</strong> we'll have to wait.</p></li>
-      <li><p><strong>January 1, {{ releaseYear }}</strong> is {{ releaseYearToEarliest }}. That's the <strong>shortest</strong> we have to wait.</p></li>
-      <li><p><strong>July 2, {{ releaseYear }}</strong> is {{ releaseYearToMiddle }}. That's the <strong>middle</strong> of the year.</p></li>
-    </ul>
-
-    <p>So that's one way to look at it: looking at different parts of {{ releaseYear }}.</p>
-
-    <p>What if we looked at something else?</p>
-
-    <hr>
-
-    <p>There have been <strong>{{ games.length }} Zelda games</strong> of which <strong>{{ mainSeriesGames.length }} are in the main series</strong>. Can we look at release dates to find a pattern?</p>
-
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" v-model="releaseDayListMainSeriesOnly">
-        Only show main series releases
-      </label>
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-6">
-        <table class="game-list table">
-          <thead>
-            <tr>
-              <th>Release day</th>
-              <th>Game</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-for="game in releaseDayList">
-              <tr v-bind:class="{ 'game-list-is-main-series': game.isMainSeries }">
-                <td class="game-list-release-day">{{ game.releaseDay }}</td>
-                <td>{{ game.name }}</td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-6">
-        <p>Of these {{ releaseDayList.length }} games:</p>
-
-        <ul>
-          <li>The <strong>median</strong> release date is {{ releaseDayAverages.median }}</li>
-          <li>The <strong>mean</strong> release date is {{ releaseDayAverages.mean }}</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
+  <div id="app"></div>
 </article>
 
 <script src="app.js"></script>
