@@ -31,10 +31,12 @@ const games = (function () {
   }, [])
 })()
 
+const mainSeriesReleases = releases.filter((r) => r.isMainSeries)
 const mainSeriesGames = games.filter((g) => g.isMainSeries)
 
 module.exports = {
   releases,
   games,
+  mainSeriesReleases,
   mainSeriesGames
 }
