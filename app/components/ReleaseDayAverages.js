@@ -2,6 +2,7 @@ const React = require('react')
 const data = require('data')
 const ReleaseDayAveragesTable = require('components/ReleaseDayAveragesTable')
 const ReleaseDayMonthsGraph = require('components/ReleaseDayMonthsGraph')
+const ReleaseDayAverageText = require('components/ReleaseDayAverageText')
 
 module.exports = React.createClass({
   getInitialState () {
@@ -34,6 +35,7 @@ module.exports = React.createClass({
           </div>
           <div className='col-md-6'>
             <ReleaseDayMonthsGraph games={games} />
+            <ReleaseDayAverageText games={games} />
           </div>
         </div>
       </div>

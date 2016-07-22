@@ -32,10 +32,11 @@ module.exports = function (props) {
 
   const rows = MONTHS.map((monthName, index) => {
     const count = months[index] || 0
+    const countPlural = count === 1 ? '' : 's'
 
     return (
       <li key={index}>
-        <p>{monthName} <span className='label label-default label-pill'>{count}</span></p>
+        <p>{monthName} <span className='label label-default label-pill'>{count} game{countPlural}</span></p>
         <p><progress className='progress' value={count} max={maxCount}></progress></p>
       </li>
     )
